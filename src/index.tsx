@@ -14,7 +14,6 @@ class App extends React.Component {
           textAlign: 'center'
         }}
       >
-        {JSON.stringify(process)}
         {env.name.split('').map(c => <Char>{c}</Char>)}
       </div>
     );
