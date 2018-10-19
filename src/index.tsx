@@ -8,7 +8,7 @@ class App extends React.Component {
       <div
         style={{
           fontSize: 50,
-          marginTop: '50%',
+          marginTop: '50vh',
           width: '100%',
           textAlign: 'center'
         }}
