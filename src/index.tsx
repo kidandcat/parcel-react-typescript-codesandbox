@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Char } from './char';
+import { env } from '../now.json';
 
 class App extends React.Component {
   render() {
@@ -13,7 +14,8 @@ class App extends React.Component {
           textAlign: 'center'
         }}
       >
-        {'Jairo Caro-Accino Viciana'.split('').map(c => <Char>{c}</Char>)}
+        {JSON.stringify(process)}
+        {env.name.split('').map(c => <Char>{c}</Char>)}
       </div>
     );
   }
