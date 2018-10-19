@@ -1,15 +1,15 @@
 import * as React from 'react';
-
-const colors = ['white', 'yellow', 'green', 'blue', 'red', 'pink'];
+import { randomColor } from './constants';
 
 export class Char extends React.Component {
+  int: number;
   state = {
-    color: colors[rand(0, 5)]
+    color: randomColor()
   };
   componentDidMount() {
     this.int = setInterval(() => {
       this.setState({
-        color: colors[rand(0, 5)]
+        color: randomColor()
       });
     }, rand(500, 1000));
   }
