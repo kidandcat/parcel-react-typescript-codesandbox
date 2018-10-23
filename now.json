@@ -1,5 +1,11 @@
 {
     "env": {
         "name": "Jairo Caro-Accino Viciana"
+    },
+    "type": "static",
+    "build": {
+      "env": {
+        "BUNDLER": "Parcel"
+      }
     }
 }
