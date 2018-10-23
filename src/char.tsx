@@ -5,15 +5,15 @@ export class Char extends React.Component {
   int: number;
   state = {
     color: randomColor(),
-    blur: 50
+    blur: 80
   };
   componentDidMount() {
     this.int = setInterval(() => {
       this.setState(state => ({
-        color: state.blur != 0 ? randomColor() : state.color,
-        blur: state.blur != 0 ? state.blur - 1 : state.blur
+        color: state.blur != 0 ? randomColor() : "#afafaf",
+        blur: state.blur != 0 ? state.blur - 2 : state.blur
       }));
-    }, rand(50, 250));
+    }, rand(30, 60));
   }
   componentWillUnmount() {
     clearInterval(this.int);
