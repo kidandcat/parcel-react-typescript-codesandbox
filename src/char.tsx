@@ -1,19 +1,30 @@
 import * as React from "react";
-import { randomColor } from "./constants";
+import { randomColor, lowRandom } from "./constants";
 
 export class Char extends React.Component {
   int: number;
   state = {
     color: randomColor(),
-    blur: 80
+    blur: 80,
+    fastBlink: false
   };
   componentDidMount() {
     this.int = setInterval(() => {
       this.setState(state => ({
-        color: state.blur != 0 ? randomColor() : "#afafaf",
-        blur: state.blur != 0 ? state.blur - 2 : state.blur
+        color:
+          state.blur > 3
+            ? randomColor()
+            : this.state.fastBlink
+              ? "white"
+              : "#afafaf",
+        blur: state.blur > 3 ? state.blur - 5 : this.state.fastBlink ? 0 : 3
       }));
-    }, rand(30, 60));
+      if (lowRandom() || this.state.fastBlink) {
+        this.setState(state => ({
+          fastBlink: !state.fastBlink
+        }));
+      }
+    }, rand(50, 150));
   }
   componentWillUnmount() {
     clearInterval(this.int);
