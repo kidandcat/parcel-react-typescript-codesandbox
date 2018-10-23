@@ -1,17 +1,19 @@
-import * as React from 'react';
-import { randomColor } from './constants';
+import * as React from "react";
+import { randomColor } from "./constants";
 
 export class Char extends React.Component {
   int: number;
   state = {
-    color: randomColor()
+    color: randomColor(),
+    blur: 50
   };
   componentDidMount() {
     this.int = setInterval(() => {
-      this.setState({
-        color: randomColor()
-      });
-    }, rand(500, 1000));
+      this.setState(state => ({
+        color: state.blur != 0 ? randomColor() : state.color,
+        blur: state.blur != 0 ? state.blur - 1 : state.blur
+      }));
+    }, rand(50, 250));
   }
   componentWillUnmount() {
     clearInterval(this.int);
@@ -20,7 +22,9 @@ export class Char extends React.Component {
     return (
       <span
         style={{
-          color: this.state.color
+          color: "rgba(0,0,0,0)",
+          textShadow: `0 0 ${this.state.blur}px ${this.state.color}`,
+          fontSize: "2em"
         }}
       >
         {this.props.children}
