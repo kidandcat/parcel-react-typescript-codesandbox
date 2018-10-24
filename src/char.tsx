@@ -5,8 +5,9 @@ export class Char extends React.Component {
   int: number;
   state = {
     color: randomColor(),
-    blur: 80,
-    fastBlink: false
+    blur: 50,
+    fastBlink: false,
+    hovering: false
   };
   componentDidMount() {
     this.int = setInterval(() => {
@@ -14,10 +15,15 @@ export class Char extends React.Component {
         color:
           state.blur > 3
             ? randomColor()
-            : this.state.fastBlink
+            : this.state.fastBlink || this.state.hovering
               ? "white"
               : "#afafaf",
-        blur: state.blur > 3 ? state.blur - 5 : this.state.fastBlink ? 0 : 3
+        blur:
+          state.blur > 3
+            ? state.blur - 5
+            : this.state.fastBlink || this.state.hovering
+              ? 0
+              : 3
       }));
       if (lowRandom() || this.state.fastBlink) {
         this.setState(state => ({
@@ -36,6 +42,10 @@ export class Char extends React.Component {
           color: "rgba(0,0,0,0)",
           textShadow: `0 0 ${this.state.blur}px ${this.state.color}`,
           fontSize: "2em"
+        }}
+        onMouseEnter={() => {
+          console.log("enter");
+          this.setState({ hovering: true });
         }}
       >
         {this.props.children}
