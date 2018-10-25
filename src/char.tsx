@@ -5,7 +5,7 @@ export class Char extends React.Component {
   int: number;
   state = {
     color: randomColor(),
-    blur: 50,
+    blur: 90,
     fastBlink: false,
     hovering: false
   };
